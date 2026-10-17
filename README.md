@@ -1,5 +1,14 @@
 # gitish (Git-ish)
 
+> [!WARNING]
+> **Certified, artisanal, vibe-coded slop.**
+>
+> No human has read this code. An AI wrote all of it while a person said "yeah, looks
+> good" and pressed Enter a lot.
+> It can discard your hunks, commit and push, so keep backups of anything you'd miss.
+>
+> Bug reports will be read with great affection and then ignored.
+
 ![screenshot](img/screenshot_1.png)
 
 My dream git client; an opintionated, terminal-based git staging UI written in Rust. Think `git add -p` but interactive — browse unstaged and staged hunks side-by-side, stage or discard individual changes, compose a commit message, and push, all without leaving the terminal.
@@ -38,8 +47,16 @@ My dream git client; an opintionated, terminal-based git staging UI written in R
 
 ### With Nix (recommended)
 
+Try it without installing:
+
 ```bash
-git clone https://github.com/westongpt/gitish
+nix run github:DisposableSoftware/gitish
+```
+
+Or from a checkout:
+
+```bash
+git clone https://github.com/DisposableSoftware/gitish
 cd gitish
 nix develop
 cargo install --path .
