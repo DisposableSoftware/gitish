@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=gitish
+Comment=A terminal git staging UI
+Exec=gitish
+Terminal=true
+Categories=Development;RevisionControl;ConsoleOnly;

@@ -183,3 +183,83 @@ fn readme_lists_every_config_key() {
         }
     }
 }
+
+const MAN_PAGE: &str = include_str!("../data/gitish.1");
+const METAINFO: &str = include_str!("../data/io.github.DisposableSoftware.Gitish.metainfo.xml");
+const DESKTOP: &str = include_str!("../data/io.github.DisposableSoftware.Gitish.desktop");
+
+/// The `.B` names that follow a `.TP` inside one `.SH` section, unescaped.
+fn man_terms(section: &str) -> Vec<String> {
+    let mut in_section = false;
+    let mut after_tp = false;
+    let mut terms = Vec::new();
+    for line in MAN_PAGE.lines() {
+        if let Some(name) = line.strip_prefix(".SH ") {
+            in_section = name == section;
+        } else if in_section && line == ".TP" {
+            after_tp = true;
+        } else if in_section && after_tp {
+            after_tp = false;
+            if let Some(term) = line.strip_prefix(".B ") {
+                terms.push(term.replace("\\-", "-"));
+            }
+        }
+    }
+    terms
+}
+
+#[test]
+fn man_page_matches_spec() {
+    let header = MAN_PAGE.lines().next().expect("man page is empty");
+    assert!(
+        header.contains(&format!("\"gitish {}\"", env!("CARGO_PKG_VERSION"))),
+        "gitish.1: .TH must carry the Cargo.toml version"
+    );
+
+    let keys: Vec<String> = table(KEYBINDINGS_MD, "keybindings")
+        .iter()
+        .filter(|r| r[3] == "done")
+        .map(|r| code_list(&r[0]).join(", "))
+        .collect();
+    assert_eq!(man_terms("KEY BINDINGS"), keys, "gitish.1 KEY BINDINGS vs spec");
+
+    let config: Vec<String> = table(CONFIGURATION_MD, "config")
+        .iter()
+        .filter(|r| r[2] == "done")
+        .map(|r| code(&r[0]).to_owned())
+        .collect();
+    assert_eq!(man_terms("CONFIGURATION"), config, "gitish.1 CONFIGURATION vs spec");
+
+    let options = man_terms("OPTIONS").join("\n");
+    for opt in ["--path", "--open", "--help"] {
+        assert!(options.contains(opt), "gitish.1 OPTIONS lacks {opt}");
+    }
+}
+
+#[test]
+fn metainfo_matches_package() {
+    for needle in [
+        format!("<release version=\"{}\"", env!("CARGO_PKG_VERSION")),
+        "<id>io.github.DisposableSoftware.Gitish</id>".into(),
+        "<project_license>MIT</project_license>".into(),
+        "<metadata_license>CC0-1.0</metadata_license>".into(),
+        "<binary>gitish</binary>".into(),
+        "type=\"console-application\"".into(),
+        "<launchable type=\"desktop-id\">io.github.DisposableSoftware.Gitish.desktop</launchable>".into(),
+    ] {
+        assert!(METAINFO.contains(&needle), "metainfo lacks {needle}");
+    }
+}
+
+#[test]
+fn desktop_entry_matches_package() {
+    let lines: Vec<&str> = DESKTOP.lines().collect();
+    for want in [
+        "Exec=gitish",
+        "Terminal=true",
+        "Categories=Development;RevisionControl;ConsoleOnly;",
+    ] {
+        assert!(lines.contains(&want), "desktop entry lacks {want}");
+    }
+    assert!(!lines.iter().any(|l| l.starts_with("Icon=")), "INT-19 says no icon");
+}

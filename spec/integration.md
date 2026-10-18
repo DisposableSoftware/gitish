@@ -18,12 +18,12 @@
 | `INT-12` | A release updates the `westongpt/homebrew-tap` formula to the new tag and checksum, by `brew bump-formula-pr` or a templated commit. | planned | manual (#27) |
 | `INT-13` | `README.md` documents `brew install westongpt/tap/gitish`. | planned | manual (#27) |
 | `INT-14` | The Nix flake either points at the same release artifacts or stays a source build, and `README.md` says which. | planned | manual (#27) |
-| `INT-15` | A `LICENSE` file at the repo root holds the MIT license, "Copyright (c) 2026 DisposableSoftware", and `README.md` links to it. | planned | manual: file exists and README links it |
-| `INT-16` | `data/gitish.1` is a man page with NAME, SYNOPSIS, DESCRIPTION, OPTIONS, KEY BINDINGS, FILES and CONFIGURATION sections. | planned | `spec_tests::man_page_matches_spec` |
-| `INT-17` | The man page `.TH` line carries the `Cargo.toml` version. Its OPTIONS list every CLI option, its KEY BINDINGS list every `done` binding, and its CONFIGURATION lists every `done` config key. | planned | `spec_tests::man_page_matches_spec` |
-| `INT-18` | `data/io.github.DisposableSoftware.Gitish.metainfo.xml` is valid AppStream for a console application: id, name, summary, description, `CC0-1.0` metadata license, `MIT` project license, project URLs, `<provides><binary>gitish</binary></provides>`, and a `<release>` for the current version. | planned | `spec_tests::metainfo_matches_package`; `appstreamcli validate` (manual) |
-| `INT-19` | `data/io.github.DisposableSoftware.Gitish.desktop` has `Terminal=true`, `Exec=gitish`, categories `Development;RevisionControl;ConsoleOnly;` and no icon. | planned | `spec_tests::desktop_entry_matches_package`; `desktop-file-validate` (manual) |
-| `INT-20` | `nix build` installs the binary, the man page, the metainfo, the desktop entry, `LICENSE` and `README.md` under their standard prefixes. | planned | manual: `nix build` and list `result/` |
+| `INT-15` | A `LICENSE` file at the repo root holds the MIT license, "Copyright (c) 2026 DisposableSoftware", and `README.md` links to it. | done | manual: `LICENSE` exists, README links it |
+| `INT-16` | `data/gitish.1` is a man page with NAME, SYNOPSIS, DESCRIPTION, OPTIONS, KEY BINDINGS, FILES and CONFIGURATION sections. | done | `spec_tests::man_page_matches_spec` |
+| `INT-17` | The man page `.TH` line carries the `Cargo.toml` version. Its OPTIONS list every CLI option, its KEY BINDINGS list every `done` binding, and its CONFIGURATION lists every `done` config key. | done | `spec_tests::man_page_matches_spec` |
+| `INT-18` | `data/io.github.DisposableSoftware.Gitish.metainfo.xml` is valid AppStream for a console application: id, name, summary, description, `CC0-1.0` metadata license, `MIT` project license, project URLs, `<provides><binary>gitish</binary></provides>`, and a `<release>` for the current version. | done | `spec_tests::metainfo_matches_package`; `appstreamcli validate` passed |
+| `INT-19` | `data/io.github.DisposableSoftware.Gitish.desktop` has `Terminal=true`, `Exec=gitish`, categories `Development;RevisionControl;ConsoleOnly;` and no icon. | done | `spec_tests::desktop_entry_matches_package`; `desktop-file-validate` passed |
+| `INT-20` | `nix build` installs the binary, the man page, the metainfo, the desktop entry, `LICENSE` and `README.md` under their standard prefixes. | done | `nix build` output lists all six paths |
 
 ## Implementation notes
 
