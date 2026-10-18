@@ -74,18 +74,25 @@ CONFIG:
         Default: true
 ";
 
+/// Returns `None` when help was requested and printed.
 pub fn parse_args() -> Result<Option<Args>, AppError> {
     let raw: Vec<String> = std::env::args().skip(1).collect();
+    let parsed = parse_from(&raw)?;
+    if parsed.is_none() {
+        print!("{HELP}");
+    }
+    Ok(parsed)
+}
+
+/// Returns `None` when `--help` is among the arguments.
+fn parse_from(raw: &[String]) -> Result<Option<Args>, AppError> {
     let mut path: Option<PathBuf> = None;
     let mut open: Option<InitialMode> = None;
     let mut i = 0;
 
     while i < raw.len() {
         match raw[i].as_str() {
-            "--help" | "-h" | "-?" => {
-                print!("{}", HELP);
-                return Ok(None);
-            }
+            "--help" | "-h" | "-?" => return Ok(None),
             "--path" => {
                 i += 1;
                 let value = raw.get(i).ok_or_else(|| {
@@ -119,38 +126,7 @@ mod tests {
 
     fn parse(args: &[&str]) -> Result<Option<Args>, AppError> {
         let raw: Vec<String> = args.iter().map(|s| s.to_string()).collect();
-        let mut path: Option<PathBuf> = None;
-        let mut open: Option<InitialMode> = None;
-        let mut i = 0;
-
-        while i < raw.len() {
-            match raw[i].as_str() {
-                "--help" | "-h" | "-?" => return Ok(None),
-                "--path" => {
-                    i += 1;
-                    let value = raw.get(i).ok_or_else(|| {
-                        AppError::Invalid("--path requires a directory argument".into())
-                    })?;
-                    path = Some(PathBuf::from(value));
-                }
-                "--open" => {
-                    i += 1;
-                    let value = raw.get(i).ok_or_else(|| {
-                        AppError::Invalid("--open requires a state argument".into())
-                    })?;
-                    open = Some(InitialMode::parse(value)?);
-                }
-                other => {
-                    return Err(AppError::Invalid(format!(
-                        "Unknown option '{}'. Run with --help for usage.",
-                        other
-                    )));
-                }
-            }
-            i += 1;
-        }
-
-        Ok(Some(Args { path, open }))
+        parse_from(&raw)
     }
 
     #[test]
