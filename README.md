@@ -109,3 +109,11 @@ Themes are stored as base16 YAML files in `~/.config/gitish/themes/`. Drop any b
 | Git backend | `git2` (libgit2) |
 | Error handling | `thiserror` |
 | Config | `serde` + `toml` + `dirs` |
+
+## Man page
+
+`data/gitish.1` is installed to `share/man/man1` by the Nix package. Read it in the repo with `man ./data/gitish.1`.
+
+## License
+
+[MIT](LICENSE).
