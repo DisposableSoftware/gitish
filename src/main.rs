@@ -10,6 +10,9 @@ mod theme;
 mod ui;
 mod ui_helpers;
 
+#[cfg(test)]
+mod spec_tests;
+
 use std::io;
 
 use crossterm::{

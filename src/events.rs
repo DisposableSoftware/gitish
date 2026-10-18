@@ -59,7 +59,7 @@ pub fn next_event(text_input: bool) -> Result<Option<AppEvent>, AppError> {
     Ok(ev)
 }
 
-fn translate_key(key: KeyEvent) -> Option<AppEvent> {
+pub(crate) fn translate_key(key: KeyEvent) -> Option<AppEvent> {
     if key.modifiers == KeyModifiers::CONTROL {
         return match key.code {
             KeyCode::Char('c') | KeyCode::Char('q') => Some(AppEvent::Quit),
