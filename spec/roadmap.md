@@ -11,7 +11,8 @@ The order of approved work: `planned` requirements, and `partial` ones with a kn
 7. `UNDO-1`…`UNDO-6` — undo and redo (#23)
 8. `COMMIT-7`…`COMMIT-11` — amend and message templates (#25)
 9. `WATCH-1`…`WATCH-6` — file watcher (#26)
-10. `INT-10`…`INT-14` — release binaries and Homebrew (#27)
+10. `INT-15`…`INT-20` — LICENSE, man page, metainfo, desktop entry, Nix install
+11. `INT-10`…`INT-14` — release binaries and Homebrew (#27)
 
 ## Verification backlog
 
