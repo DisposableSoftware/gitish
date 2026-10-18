@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- INT-18 -->
+<component type="console-application">
+  <id>io.github.DisposableSoftware.Gitish</id>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>MIT</project_license>
+  <name>gitish</name>
+  <summary>A terminal git staging UI</summary>
+  <developer id="io.github.disposablesoftware">
+    <name>DisposableSoftware</name>
+  </developer>
+  <description>
+    <p>
+      Certified, artisanal, vibe-coded slop: an AI wrote all of it while a person said
+      "yeah, looks good" and pressed Enter a lot.
+    </p>
+    <p>
+      gitish is git add -p, but interactive. Browse changed files and hunks, stage,
+      unstage and discard them, resolve merge conflicts, commit, push and pull, without
+      leaving the terminal.
+    </p>
+  </description>
+  <launchable type="desktop-id">io.github.DisposableSoftware.Gitish.desktop</launchable>
+  <url type="homepage">https://github.com/westongpt/gitish</url>
+  <url type="bugtracker">https://github.com/westongpt/gitish/issues</url>
+  <content_rating type="oars-1.1"/>
+  <provides>
+    <binary>gitish</binary>
+  </provides>
+  <releases>
+    <release version="0.1.0" date="2026-10-18"/>
+  </releases>
+</component>

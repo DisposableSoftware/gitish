@@ -52,6 +52,6 @@ Keys are `Ctrl-x` for a control chord, a name (`Enter`, `Esc`, `Tab`, `Backspace
 
 ## Implementation notes
 
-- To add a binding: edit the table, `events::translate_key`, the help overlay in `ui/mod.rs`, the bar hints in `ui/commit_bar.rs` if they apply, and `README.md`. The spec tests fail until the table and the code agree. Flip the row from `planned` to `done` in the same commit.
+- To add a binding: edit the table, `events::translate_key`, the help overlay in `ui/mod.rs`, the man page `data/gitish.1` (`INT-17`), the bar hints in `ui/commit_bar.rs` if they apply, and `README.md`. The spec tests fail until the table and the code agree. Flip the row from `planned` to `done` in the same commit.
 - `s` in line-selection mode (`STAGE-9`) is the existing `Stage` event: the mode decides what it does.
 - Bindings live in `events.rs`, not a separate `keybinds.rs` (`QUAL-3`).

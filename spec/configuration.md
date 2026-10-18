@@ -26,5 +26,5 @@
 
 ## Implementation notes
 
-- To add a key: edit `Preferences`, the table above, `README.md`, the `--help` text in `args.rs`, and flip its row in the same commit. `spec_tests` fails until they agree.
+- To add a key: edit `Preferences`, the table above, `README.md`, the man page `data/gitish.1` (`INT-17`), the `--help` text in `args.rs`, and flip its row in the same commit. `spec_tests` fails until they agree.
 - `apply_theme` and `toggle_transparent` build a full `Preferences` by hand. Adding a key means updating both, or the save drops the new key.
