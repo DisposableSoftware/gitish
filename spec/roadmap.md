@@ -2,15 +2,14 @@
 
 The order of approved work: `planned` requirements, and `partial` ones with a known bug from `/bug`. Change it here when priorities change. `/implement` works through this file: the verification backlog first, then the requirements in the order listed.
 
-1. `QUAL-2` — comment on the `RefCell` (#36)
-2. `QUAL-1` — one argument parser (#37)
-3. `LOG-1`…`LOG-3` — commit log (#18)
-4. `VIEW-11`…`VIEW-15` — file filter (#22)
-5. `STAGE-7`…`STAGE-11` — line-level staging (#24)
-6. `UNDO-1`…`UNDO-6` — undo and redo (#23)
-7. `COMMIT-7`…`COMMIT-11` — amend and message templates (#25)
-8. `WATCH-1`…`WATCH-6` — file watcher (#26)
-9. `INT-10`…`INT-14` — release binaries and Homebrew (#27)
+1. `QUAL-1` — one argument parser (#37)
+2. `LOG-1`…`LOG-3` — commit log (#18)
+3. `VIEW-11`…`VIEW-15` — file filter (#22)
+4. `STAGE-7`…`STAGE-11` — line-level staging (#24)
+5. `UNDO-1`…`UNDO-6` — undo and redo (#23)
+6. `COMMIT-7`…`COMMIT-11` — amend and message templates (#25)
+7. `WATCH-1`…`WATCH-6` — file watcher (#26)
+8. `INT-10`…`INT-14` — release binaries and Homebrew (#27)
 
 ## Verification backlog
 
