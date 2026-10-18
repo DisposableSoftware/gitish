@@ -118,10 +118,10 @@ impl App {
         let (prefs, config_err) = Preferences::load(&config_dir);
 
         let theme_name = initial_theme.or(prefs.theme.as_deref());
-        if let Some(name) = theme_name {
-            if let Some(idx) = themes.find_idx_by_name(name) {
-                themes.set_current_idx(idx);
-            }
+        if let Some(name) = theme_name
+            && let Some(idx) = themes.find_idx_by_name(name)
+        {
+            themes.set_current_idx(idx);
         }
 
         let files = list_changed_files(&repo)?;
