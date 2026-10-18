@@ -65,7 +65,7 @@ pub fn render(f: &mut Frame, app: &App, area: Rect) {
     let workdir_label = app
         .repo
         .workdir()
-        .and_then(|p| tilde_path(p))
+        .and_then(tilde_path)
         .unwrap_or_default();
     let workdir_span = Span::styled(
         format!(" {} ", workdir_label),
