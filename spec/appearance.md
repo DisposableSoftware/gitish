@@ -13,6 +13,13 @@
 | `LOOK-7` | The screen is fully cleared before the next draw when an overlay (help, theme picker, confirm, loading) opens or closes, when the terminal is resized, when the theme or transparency changes, and when the file list or diff content changes. No stale cells remain. | done | `app::tests::needs_clear_*`, `app::tests::refresh_*`; manual |
 | `LOOK-8` | The terminal is restored (raw mode off, main screen back) when the app exits, including on an error. | done | manual |
 
+| `LOOK-9` | The help overlay uses a rounded border, like every other panel and popup. (style guide: `tui.md`, Layout) | planned | manual: open `?` and check the corners |
+| `LOOK-10` | Status and error messages are short, in sentence case, with no exclamation marks. A failure reads `Could not <verb> <name>` instead of `Failed to …` or `Error: …`. (style guide: `interaction.md`, Copy) | planned | manual; unit tests on the message text |
+
+## Style guide
+
+Themes, panel layout, popups and key conventions follow the terminal section of the [DisposableSoftware style guide](https://github.com/DisposableSoftware/style-guide) (`docs/tui.md`). This spec wins on any conflict. Catppuccin is made by the Catppuccin community ([catppuccin.com](https://catppuccin.com)) and is credited in `README.md` (`INT-21`).
+
 ## Implementation notes
 
 - `needs_clear` is the flag. The run loop handles overlays and resize centrally (`is_overlay_mode`). Any other operation that changes global appearance sets `app.needs_clear = true` itself.

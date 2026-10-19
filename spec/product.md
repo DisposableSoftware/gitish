@@ -10,6 +10,10 @@ gitish is a terminal git staging UI: `git add -p`, but interactive. Binary `giti
 | `PROD-2` | The app is synchronous. Slow work (push, pull) runs on a worker thread while the UI keeps drawing. There is no async runtime. | done (ongoing constraint) | `app::tests` (`spawn_remote_worker_*`, `finish_remote_op_*`) |
 | `PROD-3` | Every user-facing change updates `README.md` and the in-app help (`INT-8`). | done (ongoing constraint) | `spec_tests::readme_lists_every_config_key`, manual |
 
+## Style guide
+
+The shared look of the DisposableSoftware apps is described in the [style guide](https://github.com/DisposableSoftware/style-guide). Its terminal section (`docs/tui.md`, with `principles.md`, `palette.md`, `interaction.md` and `readme.md`) applies to gitish; the GTK and CSS parts do not. Where this spec and the guide disagree, this spec wins. The Catppuccin palette is made by the Catppuccin community ([catppuccin.com](https://catppuccin.com)); gitish only uses it.
+
 ## Non-goals
 
 - Not a full git client: no branch, rebase, stash or remote management.

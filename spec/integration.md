@@ -24,6 +24,8 @@
 | `INT-18` | `data/io.github.DisposableSoftware.Gitish.metainfo.xml` is valid AppStream for a console application: id, name, summary, description, `CC0-1.0` metadata license, `MIT` project license, project URLs, `<provides><binary>gitish</binary></provides>`, and a `<release>` for the current version. | done | `spec_tests::metainfo_matches_package`; `appstreamcli validate` passed |
 | `INT-19` | `data/io.github.DisposableSoftware.Gitish.desktop` has `Terminal=true`, `Exec=gitish`, categories `Development;RevisionControl;ConsoleOnly;` and no icon. | done | `spec_tests::desktop_entry_matches_package`; `desktop-file-validate` passed |
 | `INT-20` | `nix build` installs the binary, the man page, the metainfo, the desktop entry, `LICENSE` and `README.md` under their standard prefixes. | done | `nix build` output lists all six paths |
+| `INT-21` | `README.md` has a `[!WARNING]` callout in the "Certified, artisanal, vibe-coded slop" voice, and a Credits section saying the colours are [Catppuccin](https://catppuccin.com) by the Catppuccin community, linking https://catppuccin.com and https://github.com/catppuccin/catppuccin. (style guide: `readme.md`, `palette.md`) | planned | manual |
+| `INT-22` | The `README.md` tagline reads "opinionated", not "opintionated". (style guide: `known-gaps.md`) | planned | manual: grep the README |
 
 ## Implementation notes
 
