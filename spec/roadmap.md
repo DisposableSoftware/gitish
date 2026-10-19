@@ -9,6 +9,8 @@ The order of approved work: `planned` requirements, and `partial` ones with a kn
 5. `COMMIT-7`…`COMMIT-11` — amend and message templates (#25)
 6. `WATCH-1`…`WATCH-6` — file watcher (#26)
 7. `INT-10`…`INT-14` — release binaries and Homebrew (#27)
+8. `LOOK-9`, `LOOK-10` — follow the style guide: help border, message copy
+9. `INT-21`, `INT-22` — README warning, Catppuccin credit, tagline typo
 
 ## Verification backlog
 
