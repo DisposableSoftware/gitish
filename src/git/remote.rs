@@ -52,14 +52,14 @@ pub(crate) fn summarize(stdout: &[u8], stderr: &[u8], success: bool) -> String {
 
     let non_empty = || combined.lines().filter(|l| !l.trim().is_empty());
 
-    if !success {
-        if let Some(line) = non_empty().find(|l| is_error_line(l)) {
-            return line.trim().to_string();
-        }
+    if !success
+        && let Some(line) = non_empty().find(|l| is_error_line(l))
+    {
+        return line.trim().to_string();
     }
 
     non_empty()
-        .last()
+        .next_back()
         .unwrap_or(if success { "Done" } else { "Failed" })
         .trim()
         .to_string()

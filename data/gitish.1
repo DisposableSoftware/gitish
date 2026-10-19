@@ -1,0 +1,132 @@
+.TH GITISH 1 2026-10-18 "gitish 0.1.0" "User Commands"
+.\" Left-aligned and unhyphenated, so key names and paths copy as written.
+.nr HY 0
+.ds AD l
+.SH NAME
+gitish \- a terminal git staging UI
+.SH SYNOPSIS
+.B gitish
+.RI [ OPTION ...]
+.SH DESCRIPTION
+.B gitish
+is \fBgit add \-p\fR, but interactive.
+It shows the changed files of a repository on the left and the hunks of the selected
+file on the right.
+You stage, unstage and discard single hunks or whole files, resolve merge conflicts,
+write a commit message and commit, and push or pull, without leaving the terminal.
+.PP
+It opens the repository found by searching upwards from the current directory.
+.SH OPTIONS
+.TP
+.B \-\-path \fIpath\fR
+Open the repository at, or above,
+.I path
+instead of the current directory.
+.TP
+.B \-\-open \fIstate\fR
+Start in a UI state.
+.I state
+is
+.B theme\-picker
+or
+.BR spinner .
+.TP
+.B \-h, \-\-help, \-?
+Print a short help and exit.
+.SH KEY BINDINGS
+The keys are fixed. What a key does depends on the mode and on the focused panel.
+Press
+.B ?
+in the program for the full list.
+.TP
+.B q, Ctrl\-c, Ctrl\-q
+quit; close an overlay.
+.TP
+.B j, Down
+move down.
+.TP
+.B k, Up
+move up.
+.TP
+.B n
+next hunk or conflict.
+.TP
+.B p
+previous hunk or conflict.
+.TP
+.B Tab
+switch panel.
+.TP
+.B s
+stage file or hunk.
+.TP
+.B u
+unstage file or hunk.
+.TP
+.B d
+discard hunk.
+.TP
+.B X
+delete untracked file.
+.TP
+.B o
+resolve conflict: ours.
+.TP
+.B i
+resolve conflict: incoming.
+.TP
+.B b
+resolve conflict: both.
+.TP
+.B c
+open the commit bar.
+.TP
+.B P
+push.
+.TP
+.B L
+pull.
+.TP
+.B t
+theme picker.
+.TP
+.B ?
+help overlay.
+.TP
+.B r
+refresh.
+.TP
+.B Enter
+confirm; next field.
+.TP
+.B Esc
+cancel; close.
+.TP
+.B Backspace
+delete a character.
+.SH FILES
+.TP
+.I $XDG_CONFIG_HOME/gitish/config.toml
+Settings. A missing file is not an error, and every key is optional.
+A file that cannot be parsed is copied to
+.I config.toml.bak
+and the defaults are used.
+.TP
+.I $XDG_CONFIG_HOME/gitish/themes/
+base16 YAML themes. The four Catppuccin themes are written here on first run.
+Any base16 file in the folder appears in the theme picker.
+.SH CONFIGURATION
+.TP
+.B theme
+The name of the active theme, a string. The theme picker saves it.
+.TP
+.B transparent
+When true, gitish uses the terminal's own background. Default
+.BR false .
+.TP
+.B use_nerd_fonts
+When true, icons are Nerd Font glyphs. When false they are plain ASCII.
+Default
+.BR true .
+.SH SEE ALSO
+.BR git (1)
