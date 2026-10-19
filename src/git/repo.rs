@@ -198,6 +198,8 @@ pub fn staged_diff_for_file(repo: &Repository, path: &str) -> Result<Vec<Hunk>, 
 fn parse_diff_hunks(diff: &git2::Diff) -> Result<Vec<Hunk>, AppError> {
     use std::cell::RefCell;
 
+    // RefCell because Diff::foreach takes several FnMut closures that all push into
+    // the same Vec, and libgit2 does not let them share a &mut.
     let hunks: RefCell<Vec<Hunk>> = RefCell::new(Vec::new());
 
     diff.foreach(

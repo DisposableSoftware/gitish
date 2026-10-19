@@ -283,7 +283,7 @@ mod tests {
         let files = list_changed_files(&repo).unwrap();
         let entry = files.iter().find(|f| f.path == "file.txt");
         assert!(
-            entry.map_or(true, |f| !f.staged),
+            entry.is_none_or(|f| !f.staged),
             "file should not be staged after unstaging"
         );
     }

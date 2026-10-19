@@ -14,12 +14,19 @@
         {
           default = pkgs.rustPlatform.buildRustPackage {
             pname = "gitish";
-            version = "0.1.0";
+            version = (builtins.fromTOML (builtins.readFile ./Cargo.toml)).package.version;
             src = ./.;
             cargoLock.lockFile = ./Cargo.lock;
             nativeBuildInputs = with pkgs; [ pkg-config cmake git ];
             buildInputs = with pkgs; [ openssl libgit2 zlib ];
             env.OPENSSL_NO_VENDOR = 1;
+
+            postInstall = ''
+              install -Dm644 data/gitish.1 -t $out/share/man/man1
+              install -Dm644 data/io.github.DisposableSoftware.Gitish.metainfo.xml -t $out/share/metainfo
+              install -Dm644 data/io.github.DisposableSoftware.Gitish.desktop -t $out/share/applications
+              install -Dm644 LICENSE README.md -t $out/share/doc/gitish
+            '';
           };
         });
 
